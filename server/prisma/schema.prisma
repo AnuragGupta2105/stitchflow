@@ -1,0 +1,156 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum UserRole {
+  MERCHANDISER
+  SUPERVISOR
+  BUYER
+}
+
+enum OrderStatus {
+  ON_TRACK
+  AT_RISK
+  DELAYED
+  COMPLETED
+}
+
+enum ProductionStage {
+  CUTTING
+  STITCHING
+  PRINTING
+  WASHING
+  FINISHING
+  PACKING
+}
+
+enum MilestoneStatus {
+  PENDING
+  IN_PROGRESS
+  COMPLETED
+  DELAYED
+}
+
+model Buyer {
+  id          String   @id @default(cuid())
+  companyName String
+  country     String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  users  User[]
+  orders Order[]
+}
+
+model User {
+  id           String   @id @default(cuid())
+  name         String
+  email        String   @unique
+  passwordHash String
+  role         UserRole
+  unitId       String?
+  buyerId      String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  buyer   Buyer?             @relation(fields: [buyerId], references: [id], onDelete: SetNull)
+  updates ProductionUpdate[]
+
+  @@index([buyerId])
+}
+
+model Order {
+  id             String      @id @default(cuid())
+  poNumber       String      @unique
+  buyerId        String
+  styleName      String
+  colour         String
+  totalQuantity  Int
+  sizeQuantities Json?
+  completedQty   Int         @default(0)
+  exFactoryDate  DateTime
+  status         OrderStatus @default(ON_TRACK)
+  unitName       String
+  createdAt      DateTime    @default(now())
+  updatedAt      DateTime    @updatedAt
+
+  buyer      Buyer              @relation(fields: [buyerId], references: [id])
+  milestones Milestone[]
+  updates    ProductionUpdate[]
+
+  @@index([buyerId])
+  @@index([exFactoryDate])
+}
+
+model Milestone {
+  id          String          @id @default(cuid())
+  orderId     String
+  stage       ProductionStage
+  plannedDate DateTime
+  actualDate  DateTime?
+  status      MilestoneStatus @default(PENDING)
+  createdAt   DateTime        @default(now())
+
+  order Order @relation(fields: [orderId], references: [id], onDelete: Cascade)
+
+  @@index([orderId])
+}
+
+model ProductionUpdate {
+  id              String               @id @default(cuid())
+  orderId         String
+  userId          String
+  stage           ProductionStage
+  quantity        Int
+  issueNote       String?
+  reasonCategory  String?
+  photoUrl        String?
+  createdAt       DateTime             @default(now())
+  clientRequestId String?              @unique
+  order           Order                @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  user            User                 @relation(fields: [userId], references: [id])
+  reasonAnalysis  IssueReasonAnalysis?
+
+  @@index([orderId])
+  @@index([userId])
+}
+
+model AuditLog {
+  id        String   @id @default(cuid())
+  orderId   String
+  fieldName String
+  oldValue  String?
+  newValue  String?
+  changedBy String
+  changedAt DateTime @default(now())
+
+  @@index([orderId])
+}
+
+model IssueReasonAnalysis {
+  id                 String    @id @default(cuid())
+  productionUpdateId String    @unique
+  translation        String?
+  englishSummary     String?
+  suggestedCategory  String?
+  confidence         Float?
+  rationale          String?
+  providerModel      String?
+  processingStatus   String    @default("PENDING")
+  reviewStatus       String    @default("PENDING_REVIEW")
+  finalCategory      String?
+  reviewedBy         String?
+  reviewedAt         DateTime?
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
+
+  productionUpdate ProductionUpdate @relation(fields: [productionUpdateId], references: [id], onDelete: Cascade)
+
+  @@index([reviewStatus])
+  @@index([processingStatus])
+}

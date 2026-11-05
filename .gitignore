@@ -1,0 +1,31 @@
+# Dependencies
+**/node_modules/
+
+# Environment secrets
+.env
+.env.*
+!.env.example
+!.env.*.example
+
+# Build output
+**/dist/
+**/build/
+
+# Uploaded production photos
+server/uploads/
+
+# Generated Prisma client
+server/generated/
+
+# Logs and coverage
+*.log
+**/coverage/
+
+# OS files
+.DS_Store
+Thumbs.db
+# Local AI coding-tool metadata
+server/.agents/
+server/.claude/
+server/.cursor/
+server/.devin/
