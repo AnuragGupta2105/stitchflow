@@ -6560,3 +6560,2290 @@ body {
     padding: 0 10px !important;
   }
 }
+
+
+/* =====================================================================
+   STITCHFLOW — RESPONSIVE LAYOUT SYSTEM (FINAL)
+   Appended to the supplied full stylesheet.
+   Desktop rules above are retained unchanged.
+   This layer uses the actual component classes in StitchFlow App.tsx.
+   Breakpoints: 1100px / 760px / 560px / 380px.
+   ===================================================================== */
+
+/* Base containment: allow grid/flex children to shrink naturally. */
+html,
+body,
+#root {
+  width: 100%;
+  max-width: 100%;
+}
+
+.app-shell,
+.main-content {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+}
+
+.main-content {
+  flex: 1 1 auto;
+}
+
+.page-content,
+.page-content > section,
+.page-heading,
+.page-heading > div,
+.orders-section,
+.buyer-workspace,
+.supervisor-workspace,
+.merchandiser-workspace-page,
+.order-setup-workspace,
+.issue-review-workspace {
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.page-content {
+  width: 100%;
+}
+
+img,
+svg,
+video,
+canvas {
+  max-width: 100%;
+}
+
+button,
+input,
+select,
+textarea {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* Tablet workspace balance. */
+@media (max-width: 1100px) {
+  .page-content {
+    padding-left: 28px;
+    padding-right: 28px;
+  }
+
+  .topbar {
+    padding-left: 28px;
+    padding-right: 28px;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .insight-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .orders-table {
+    min-width: 760px;
+  }
+
+  .order-setup-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Main phone/tablet layout. */
+@media (max-width: 760px) {
+  /* Shell, header and page gutters */
+  .app-shell {
+    display: block;
+    min-height: 100vh;
+    min-height: 100svh;
+  }
+
+  .main-content {
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+  }
+
+  .topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    width: 100%;
+    height: 58px;
+    padding: 0 14px;
+  }
+
+  .topbar-left {
+    display: flex;
+    flex: 1 1 auto;
+    align-items: center;
+    gap: 9px;
+    min-width: 0;
+  }
+
+  .topbar-right {
+    display: flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 6px;
+    min-width: 36px;
+  }
+
+  .breadcrumb {
+    display: flex;
+    flex: 1 1 auto;
+    align-items: center;
+    gap: 7px;
+    min-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  .breadcrumb > span,
+  .breadcrumb strong {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .breadcrumb-divider {
+    flex: 0 0 auto;
+  }
+
+  .topbar .icon-button {
+    flex: 0 0 35px;
+    width: 35px;
+    height: 35px;
+  }
+
+  .notification-panel {
+    position: fixed;
+    top: 66px;
+    right: 12px;
+    left: 12px;
+    z-index: 100;
+    width: auto;
+    max-width: none;
+    max-height: calc(100dvh - 84px);
+    overflow: auto;
+    box-sizing: border-box;
+  }
+
+  .page-content {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 25px 15px 22px;
+  }
+
+  .page-heading {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    gap: 14px;
+    width: 100%;
+    margin-bottom: 22px;
+  }
+
+  .page-heading > div {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .page-heading h1 {
+    max-width: 100%;
+    font-size: clamp(27px, 7.4vw, 32px);
+    line-height: 1.16;
+    letter-spacing: -1.15px;
+    overflow-wrap: anywhere;
+  }
+
+  .page-heading h1 span {
+    display: inline;
+  }
+
+  .page-description {
+    max-width: 100%;
+    font-size: 12px;
+    line-height: 1.65;
+    overflow-wrap: anywhere;
+  }
+
+  .page-heading > .primary-button,
+  .page-heading > .secondary-button,
+  .page-heading .primary-button,
+  .page-heading .secondary-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    align-self: stretch;
+    width: 100%;
+    min-width: 0;
+    min-height: 44px;
+    padding: 11px 15px;
+    white-space: normal;
+    text-align: center;
+  }
+
+  .page-footer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 14px;
+    padding: 18px 2px 8px;
+    line-height: 1.5;
+  }
+
+  /* Overview cards */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    width: 100%;
+    margin-bottom: 14px;
+  }
+
+  .stat-card {
+    min-width: 0;
+    padding: 14px 12px;
+  }
+
+  .stat-top {
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  .stat-top > span {
+    min-width: 0;
+    font-size: 10px;
+    line-height: 1.35;
+    overflow-wrap: anywhere;
+  }
+
+  .stat-icon {
+    flex: 0 0 28px;
+    width: 28px;
+    height: 28px;
+  }
+
+  .stat-value {
+    margin-top: 10px;
+    font-size: 27px;
+  }
+
+  .stat-note {
+    font-size: 9px;
+    line-height: 1.4;
+    overflow-wrap: anywhere;
+  }
+
+  .insight-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+    width: 100%;
+    margin-bottom: 22px;
+  }
+
+  .production-card,
+  .attention-card {
+    min-width: 0;
+    padding: 17px;
+  }
+
+  .production-number-row {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 19px;
+  }
+
+  .production-footer {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .attention-card p {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+  }
+
+  /* Orders board: all controls fit; table becomes mobile order cards. */
+  .orders-section {
+    width: 100%;
+    min-width: 0;
+    border-radius: 13px;
+  }
+
+  .orders-heading {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    padding: 18px 15px 14px;
+  }
+
+  .orders-heading > div:first-child {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .orders-heading-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    justify-content: flex-start;
+    width: 100%;
+    min-width: 0;
+    gap: 8px;
+  }
+
+  .orders-heading-actions .order-heading-create {
+    width: 100%;
+    min-width: 0;
+    justify-content: center;
+  }
+
+  .orders-heading-actions .text-button {
+    min-height: 36px;
+  }
+
+  .table-toolbar {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    gap: 11px;
+    width: 100%;
+    min-width: 0;
+    padding: 0 14px 13px;
+    box-sizing: border-box;
+  }
+
+  .filter-tabs {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 7px;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .filter-tab {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    min-width: 0;
+    min-height: 40px;
+    padding: 8px 6px;
+    border: 1px solid #e3d9ca;
+    border-radius: 8px;
+    font-size: 10px;
+    line-height: 1.25;
+    text-align: center;
+    white-space: normal;
+  }
+
+  .filter-tab span {
+    flex: 0 0 auto;
+    margin-left: 1px;
+  }
+
+  .table-actions {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 42px 42px;
+    align-items: center;
+    gap: 7px;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .search-box {
+    display: flex;
+    width: 100%;
+    min-width: 0;
+    height: 42px;
+    padding: 0 9px;
+  }
+
+  .search-box input {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .table-actions .filter-button,
+  .table-actions .icon-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    min-width: 42px;
+    height: 42px;
+    padding: 0;
+    gap: 0;
+  }
+
+  .table-actions .filter-button span,
+  .table-actions .filter-button > svg:last-child {
+    display: none;
+  }
+
+  .order-extra-filters,
+  .orders-section .order-extra-filters,
+  .order-dimension-filters {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    justify-content: flex-start !important;
+    gap: 10px !important;
+    width: 100%;
+    min-width: 0;
+    margin: 0 !important;
+    padding: 0 14px 14px !important;
+    box-sizing: border-box;
+  }
+
+  .order-extra-filters .order-filter-field,
+  .orders-section .order-extra-filters .order-filter-field,
+  .order-dimension-filters .order-filter-field,
+  .order-filter-field {
+    display: flex;
+    flex: 1 1 auto !important;
+    flex-direction: column;
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    gap: 6px;
+    box-sizing: border-box;
+  }
+
+  .order-extra-filters .order-filter-field select,
+  .orders-section .order-extra-filters .order-filter-field select,
+  .order-dimension-filters .order-filter-field select,
+  .order-filter-field select {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    min-height: 42px;
+    box-sizing: border-box;
+  }
+
+  .table-scroll {
+    width: 100%;
+    min-width: 0;
+    overflow: visible;
+  }
+
+  .orders-table {
+    display: block;
+    width: 100%;
+    min-width: 0 !important;
+    border-collapse: separate;
+    border-spacing: 0;
+    white-space: normal;
+    table-layout: fixed;
+    box-sizing: border-box;
+  }
+
+  .orders-table thead {
+    display: none;
+  }
+
+  .orders-table tbody {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 10px;
+    width: 100%;
+    min-width: 0;
+    padding: 12px 12px 14px;
+    box-sizing: border-box;
+  }
+
+  .orders-table tbody tr {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    padding: 10px 12px;
+    border: 1px solid #e5d9ca;
+    border-radius: 11px;
+    background: #fffdf9;
+    box-sizing: border-box;
+  }
+
+  .orders-table tbody tr:hover {
+    background: #fffdf9;
+  }
+
+  .orders-table tbody td {
+    display: grid;
+    grid-template-columns: 88px minmax(0, 1fr);
+    align-items: start;
+    gap: 8px;
+    width: 100%;
+    min-width: 0;
+    padding: 8px 0;
+    border-top: 1px solid #f0e8de;
+    font-size: 11px;
+    line-height: 1.4;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    box-sizing: border-box;
+  }
+
+  .orders-table tbody td:first-child {
+    padding-top: 1px;
+    border-top: 0;
+  }
+
+  .orders-table tbody td::before {
+    grid-column: 1;
+    color: #82776b;
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    line-height: 1.45;
+    text-transform: uppercase;
+  }
+
+  .orders-table tbody td:nth-child(1)::before { content: "Order / buyer"; }
+  .orders-table tbody td:nth-child(2)::before { content: "Product"; }
+  .orders-table tbody td:nth-child(3)::before { content: "Production"; }
+  .orders-table tbody td:nth-child(4)::before { content: "Stage"; }
+  .orders-table tbody td:nth-child(5)::before { content: "Ex-factory"; }
+  .orders-table tbody td:nth-child(6)::before { content: "Status"; }
+
+  .orders-table tbody td > * {
+    grid-column: 2;
+    min-width: 0;
+    max-width: 100%;
+    overflow-wrap: anywhere;
+  }
+
+  .orders-table tbody td:nth-child(3) .mini-progress {
+    width: min(100%, 120px);
+  }
+
+  .orders-table tbody td:nth-child(6) .risk-badge {
+    justify-self: start;
+  }
+
+  .orders-table tbody td:nth-child(7) {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    min-height: 34px;
+    padding: 4px 0 0;
+    border-top: 1px solid #f0e8de;
+  }
+
+  .orders-table tbody td:nth-child(7)::before {
+    display: none;
+  }
+
+  .row-more {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 34px;
+    border: 1px solid #e6dbce;
+    border-radius: 8px;
+    background: #f8f3eb;
+  }
+
+  .risk-status-cell {
+    min-width: 0;
+  }
+
+  .risk-math-caption {
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+
+  .table-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+    padding: 12px 14px;
+    line-height: 1.45;
+    overflow-wrap: anywhere;
+  }
+
+  .orders-section .notification-panel,
+  .orders-section .notification-panel.order-details-panel {
+    position: relative;
+    top: auto;
+    right: auto;
+    bottom: auto;
+    left: auto;
+    width: auto;
+    max-width: none;
+    max-height: none;
+    margin: 0 12px 12px;
+    padding: 15px;
+    box-sizing: border-box;
+    overflow-wrap: anywhere;
+  }
+
+  .orders-section .risk-analysis-metrics,
+  .orders-section .notification-panel.order-details-panel .risk-analysis-metrics {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  /* Create-order form and TNA template */
+  .order-setup-workspace {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .order-setup-page-heading {
+    align-items: stretch;
+  }
+
+  .order-setup-back {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .order-setup-card {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    padding: 17px 14px;
+    border-radius: 13px;
+    box-sizing: border-box;
+  }
+
+  .order-setup-section-heading {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    min-width: 0;
+  }
+
+  .order-setup-section-heading > div {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .order-setup-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 14px;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .order-setup-field,
+  .order-setup-size-field,
+  .order-setup-date-field {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .order-setup-field input,
+  .order-setup-field select,
+  .order-setup-milestone-date input,
+  .order-setup-size-cell input {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .order-setup-size-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .order-setup-size-cell {
+    min-width: 0;
+  }
+
+  .order-setup-size-heading {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 6px 10px;
+  }
+
+  .order-setup-milestone {
+    display: grid;
+    grid-template-columns: 36px minmax(0, 1fr);
+    align-items: start;
+    gap: 9px 10px;
+    width: 100%;
+    min-width: 0;
+    padding: 12px;
+    box-sizing: border-box;
+  }
+
+  .order-setup-milestone-number {
+    grid-row: 1 / span 2;
+  }
+
+  .order-setup-milestone-name {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .order-setup-milestone-date {
+    grid-column: 2;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .order-setup-milestone-date input {
+    width: 100%;
+  }
+
+  .order-setup-actions {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 9px;
+    width: 100%;
+  }
+
+  .order-setup-actions button,
+  .order-setup-actions .primary-button {
+    width: 100%;
+    min-width: 0;
+    justify-content: center;
+  }
+
+  /* Supervisor workspace */
+  .supervisor-workspace {
+    width: 100%;
+    max-width: 1100px;
+    min-width: 0;
+  }
+
+  .supervisor-order-card,
+  .supervisor-form-card,
+  .supervisor-history-card {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    padding: 17px;
+    box-sizing: border-box;
+  }
+
+  .supervisor-order-card select,
+  .supervisor-form-card select,
+  .supervisor-form-card input,
+  .supervisor-form-card textarea {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .supervisor-order-details {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 13px;
+  }
+
+  .supervisor-form-card h2 {
+    font-size: 20px;
+    line-height: 1.3;
+  }
+
+  .supervisor-form-card textarea {
+    min-height: 110px;
+  }
+
+  .supervisor-form-card .supervisor-submit,
+  .supervisor-submit {
+    width: 100%;
+    min-width: 0;
+    justify-content: center;
+  }
+
+  .production-photo-picker {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 9px;
+  }
+
+  .photo-picker-option {
+    min-width: 0;
+    min-height: 70px;
+    flex-direction: column;
+    justify-content: center;
+    gap: 7px;
+    padding: 10px 7px;
+    font-size: 11px;
+    text-align: center;
+  }
+
+  .production-photo-preview {
+    width: 100%;
+    min-width: 0;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 9px;
+  }
+
+  .production-photo-preview img {
+    flex: 0 0 76px;
+    width: 76px;
+    height: 72px;
+  }
+
+  .production-photo-preview-info {
+    min-width: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 7px;
+    overflow-wrap: anywhere;
+  }
+
+  .supervisor-history-heading,
+  .supervisor-history-item-top,
+  .supervisor-history-meta,
+  .supervisor-history-top,
+  .supervisor-history-title {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 7px 10px;
+    min-width: 0;
+  }
+
+  .supervisor-history-quantity {
+    white-space: normal;
+  }
+
+  .supervisor-history-meta {
+    flex-direction: column;
+    gap: 5px;
+    overflow-wrap: anywhere;
+  }
+
+  .supervisor-history-note {
+    overflow-wrap: anywhere;
+    white-space: pre-wrap;
+  }
+
+  .supervisor-history-photo,
+  .supervisor-history-photo-wrap img {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+
+  /* Buyer portal */
+  .buyer-workspace {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .buyer-page-heading,
+  .buyer-section-heading {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .buyer-page-heading > div,
+  .buyer-section-heading > div {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .buyer-refresh-button {
+    width: 100%;
+    min-width: 0;
+    justify-content: center;
+  }
+
+  .buyer-summary-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 10px;
+    width: 100%;
+    min-width: 0;
+    margin-bottom: 24px;
+  }
+
+  .buyer-summary-card {
+    width: 100%;
+    min-width: 0;
+    padding: 16px 17px;
+    box-sizing: border-box;
+  }
+
+  .buyer-summary-card > small {
+    overflow-wrap: anywhere;
+  }
+
+  .buyer-order-list {
+    width: 100%;
+    min-width: 0;
+    gap: 12px;
+  }
+
+  .buyer-order-card {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    padding: 16px;
+    box-sizing: border-box;
+  }
+
+  .buyer-order-card-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 9px;
+  }
+
+  .buyer-order-card-header h3 {
+    max-width: 100%;
+    font-size: 19px;
+    overflow-wrap: anywhere;
+  }
+
+  .buyer-exfactory {
+    flex: 0 1 auto;
+    text-align: left;
+  }
+
+  .buyer-product-row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    padding: 14px 0;
+  }
+
+  .buyer-product-row > div {
+    min-width: 0;
+  }
+
+  .buyer-product-row > div:first-child {
+    grid-column: 1 / -1;
+  }
+
+  .buyer-progress-heading {
+    flex-wrap: wrap;
+  }
+
+  .buyer-milestone-row {
+    grid-template-columns: 34px minmax(0, 1fr);
+    gap: 8px 10px;
+    min-width: 0;
+  }
+
+  .buyer-milestone-name {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .buyer-milestone-status {
+    grid-column: 2;
+    justify-self: start;
+    text-align: left;
+  }
+
+  .buyer-photo-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .buyer-photo-item {
+    min-width: 0;
+  }
+
+  .buyer-audit-panel,
+  .buyer-audit-entry {
+    min-width: 0;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .buyer-audit-entry {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 6px;
+  }
+
+  .buyer-audit-entry span,
+  .buyer-audit-entry small,
+  .buyer-audit-entry strong {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  /* Merchandiser production activity */
+  .merchandiser-workspace-page {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .merch-production-list {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .merch-production-card {
+    width: 100%;
+    min-width: 0;
+    padding: 16px;
+    box-sizing: border-box;
+  }
+
+  .merch-production-card .supervisor-history-top {
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+
+  .merch-production-card .supervisor-history-title {
+    min-width: 0;
+  }
+
+  /* TNA calendar */
+  .tna-list {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .tna-row {
+    grid-template-columns: 64px minmax(0, 1fr);
+    gap: 10px;
+    padding: 13px;
+    min-width: 0;
+  }
+
+  .tna-date-block {
+    min-height: 64px;
+  }
+
+  .tna-date-block strong {
+    font-size: 21px;
+  }
+
+  .tna-main {
+    min-width: 0;
+  }
+
+  .tna-main span {
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+
+  .tna-status {
+    grid-column: 2;
+    justify-self: start;
+    min-width: 100px;
+  }
+
+  .tna-row-actions {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 7px;
+    min-width: 0;
+  }
+
+  .tna-row-actions button,
+  .tna-date-editor button,
+  .tna-ship-date-row button {
+    min-height: 40px;
+  }
+
+  .tna-date-editor {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    gap: 8px;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .tna-date-editor input[type="date"] {
+    flex: 1 1 100%;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .tna-ship-date-row {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 10px;
+    padding: 14px;
+  }
+
+  .tna-ship-date-row .tna-row-actions,
+  .tna-ship-date-row .tna-date-editor {
+    grid-column: auto;
+  }
+
+  .tna-audit-panel,
+  .buyer-audit-panel {
+    width: 100%;
+    min-width: 0;
+    padding: 15px;
+    box-sizing: border-box;
+  }
+
+  .tna-audit-panel .section-heading-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .tna-audit-entry,
+  .buyer-audit-entry {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 6px;
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .tna-audit-dates {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  /* AI review */
+  .issue-review-workspace {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .issue-review-heading {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .issue-review-heading > div,
+  .issue-review-heading > button {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .issue-review-heading .secondary-button {
+    justify-content: center;
+    white-space: normal;
+  }
+
+  .issue-review-summary {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 10px;
+    margin: 19px 0 22px;
+  }
+
+  .issue-review-summary article {
+    min-height: 82px;
+    padding: 16px;
+  }
+
+  .issue-review-card {
+    width: 100%;
+    min-width: 0;
+    padding: 16px;
+    box-sizing: border-box;
+  }
+
+  .issue-review-card-top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .issue-review-card-top > div {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .issue-review-note-grid,
+  .issue-review-analysis-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 10px;
+  }
+
+  .issue-review-note,
+  .issue-review-analysis-grid > div {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .issue-review-actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .issue-review-actions > p,
+  .issue-review-correction {
+    width: 100%;
+    max-width: none;
+    min-width: 0;
+  }
+
+  .issue-review-buttons {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    justify-content: stretch;
+    width: 100%;
+  }
+
+  .issue-review-buttons button,
+  .issue-review-actions > button {
+    width: 100%;
+    min-width: 0;
+  }
+
+  /* Buyer directory */
+  .buyers-directory-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .buyer-directory-card {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    padding: 17px;
+    box-sizing: border-box;
+  }
+
+  .buyer-directory-card h2,
+  .buyer-directory-card > p {
+    overflow-wrap: anywhere;
+  }
+
+  .buyer-directory-stats {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 7px;
+  }
+
+  .buyer-directory-stats span {
+    min-width: 0;
+    overflow-wrap: anywhere;
+    font-size: 10px;
+  }
+
+  .buyer-directory-stats strong {
+    font-size: 16px;
+  }
+
+  .buyer-directory-card .secondary-button {
+    width: 100%;
+    max-width: 100%;
+    white-space: normal;
+  }
+
+  /* Camera dialog */
+  .camera-modal-backdrop {
+    align-items: center;
+    padding: 12px;
+  }
+
+  .camera-modal {
+    width: 100%;
+    max-width: 520px;
+    max-height: calc(100dvh - 24px);
+    padding: 15px;
+  }
+
+  .camera-modal-actions {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 8px;
+  }
+
+  .camera-modal-actions .primary-button,
+  .camera-modal-actions .secondary-button {
+    width: 100%;
+    min-width: 0;
+  }
+}
+
+/* Small phones: more breathing room and safe two-column metrics. */
+@media (max-width: 380px) {
+  .page-content {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  .topbar {
+    padding-left: 11px;
+    padding-right: 11px;
+  }
+
+  .breadcrumb {
+    gap: 5px;
+    font-size: 9px;
+  }
+
+  .page-heading h1 {
+    font-size: 27px;
+    letter-spacing: -0.9px;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .stat-card {
+    padding: 12px 10px;
+  }
+
+  .stat-top > span {
+    font-size: 9px;
+  }
+
+  .stat-value {
+    font-size: 25px;
+  }
+
+  .filter-tabs {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .orders-table tbody {
+    padding-left: 9px;
+    padding-right: 9px;
+  }
+
+  .orders-table tbody tr {
+    padding: 9px 10px;
+  }
+
+  .orders-table tbody td {
+    grid-template-columns: 78px minmax(0, 1fr);
+    gap: 7px;
+    font-size: 10px;
+  }
+
+  .order-setup-card,
+  .supervisor-order-card,
+  .supervisor-form-card,
+  .supervisor-history-card,
+  .buyer-order-card,
+  .issue-review-card,
+  .merch-production-card {
+    padding: 14px;
+  }
+
+  .order-setup-size-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .buyer-directory-stats {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .buyer-directory-stats strong {
+    font-size: 15px;
+  }
+
+  .production-photo-picker {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .photo-picker-option {
+    padding-left: 5px;
+    padding-right: 5px;
+    font-size: 10px;
+  }
+}
+
+/* Respect reduced-motion settings and prevent long text from widening cards. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+.page-content *,
+.orders-section *,
+.buyer-workspace *,
+.supervisor-workspace *,
+.merchandiser-workspace-page *,
+.order-setup-workspace *,
+.issue-review-workspace * {
+  min-width: 0;
+}
+
+.page-description,
+.cell-subtext,
+.buyer-order-card,
+.buyer-order-card *,
+.supervisor-history-card *,
+.issue-review-card *,
+.order-setup-card * {
+  overflow-wrap: anywhere;
+}
+
+
+/* ==========================================================
+   STITCHFLOW — FINAL RESPONSIVE CORRECTION
+   Append at the bottom of client/src/App.css
+   Covers all three roles without changing desktop styling.
+   ========================================================== */
+
+@media (max-width: 760px) {
+
+  /* SHARED WORKSPACE */
+  .app-shell,
+  .main-content,
+  .page-content,
+  .page-content.buyer-workspace,
+  .page-content.supervisor-workspace,
+  .page-content.merchandiser-workspace-page,
+  .page-content.order-setup-workspace,
+  .page-content.issue-review-workspace {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+  }
+
+  .main-content {
+    flex: 1 1 auto;
+  }
+
+  .page-content {
+    padding: 22px 16px 20px;
+  }
+
+  .page-content > * {
+    min-width: 0;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .page-heading {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .page-heading > div {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .page-heading h1 {
+    max-width: 100%;
+    font-size: clamp(26px, 7vw, 32px);
+    line-height: 1.2;
+    letter-spacing: -0.8px;
+    overflow-wrap: anywhere;
+  }
+
+  .page-description {
+    max-width: 100%;
+    font-size: 12px;
+    line-height: 1.6;
+    overflow-wrap: anywhere;
+  }
+
+  .page-heading > button {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    justify-content: center;
+    white-space: normal;
+    box-sizing: border-box;
+  }
+
+  /* MERCHANDISER OVERVIEW */
+  .stats-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    width: 100%;
+  }
+
+  .stat-card {
+    min-width: 0;
+    padding: 14px;
+  }
+
+  .stat-top > span,
+  .stat-note {
+    overflow-wrap: anywhere;
+  }
+
+  .insight-grid {
+    grid-template-columns: minmax(0, 1fr);
+    width: 100%;
+  }
+
+  .production-card,
+  .attention-card {
+    width: 100%;
+    min-width: 0;
+    padding: 16px;
+  }
+
+  .production-footer {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  /* ORDERS */
+  .orders-section {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    overflow: hidden;
+    border-radius: 12px;
+  }
+
+  .orders-section .orders-heading {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    padding: 17px 15px;
+  }
+
+  .orders-section .orders-heading > div {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .orders-section .orders-heading-actions {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 8px;
+  }
+
+  .orders-section .orders-heading-actions > button {
+    width: 100%;
+    max-width: 100%;
+    justify-content: center;
+  }
+
+  .orders-section .table-toolbar {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    width: 100%;
+    min-width: 0;
+    padding: 0 13px 14px;
+    box-sizing: border-box;
+  }
+
+  /* Strong selector overrides the old horizontal filter strip. */
+  .orders-section .table-toolbar .filter-tabs {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    grid-auto-flow: row !important;
+    flex-wrap: initial !important;
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    overflow: visible !important;
+    gap: 8px;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+
+  .orders-section .table-toolbar .filter-tabs .filter-tab {
+    display: inline-flex !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100%;
+    min-height: 41px;
+    flex: initial !important;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 5px !important;
+    white-space: normal !important;
+    text-align: center;
+    font-size: 10px;
+    box-sizing: border-box;
+  }
+
+  .orders-section .table-toolbar .table-actions {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 44px 42px;
+    gap: 7px;
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+  }
+
+  .orders-section .table-toolbar .search-box {
+    display: flex;
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    height: 42px;
+    box-sizing: border-box;
+  }
+
+  .orders-section .table-toolbar .search-box input {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .orders-section .table-toolbar .filter-button {
+    display: inline-flex;
+    width: 44px;
+    min-width: 44px;
+    max-width: 44px;
+    height: 42px;
+    justify-content: center;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  .orders-section .table-toolbar .filter-button span,
+  .orders-section .table-toolbar .filter-button > svg:last-child {
+    display: none;
+  }
+
+  .orders-section .table-toolbar .icon-button {
+    width: 42px;
+    min-width: 42px;
+    max-width: 42px;
+    height: 42px;
+    justify-content: center;
+    box-sizing: border-box;
+  }
+
+  /* Buyer, unit and ISO ship-week filters */
+  .orders-section .order-extra-filters {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 10px !important;
+    width: 100%;
+    min-width: 0;
+    margin: 0 !important;
+    padding: 0 14px 14px !important;
+    box-sizing: border-box;
+  }
+
+  .orders-section .order-extra-filters .order-filter-field {
+    display: flex !important;
+    flex-direction: column;
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    flex: 1 1 auto !important;
+  }
+
+  .orders-section .order-extra-filters .order-filter-field select {
+    width: 100% !important;
+    max-width: 100%;
+    min-width: 0 !important;
+    min-height: 43px;
+    box-sizing: border-box;
+  }
+
+  .orders-section .order-extra-filters .order-filter-clear {
+    width: 100%;
+    min-height: 40px;
+  }
+
+  /* Desktop table becomes stacked mobile order cards */
+  .orders-section .table-scroll {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    overflow: visible;
+  }
+
+  .orders-section .table-scroll .orders-table {
+    display: block !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100%;
+    white-space: normal;
+    table-layout: fixed;
+    box-sizing: border-box;
+  }
+
+  .orders-section .table-scroll .orders-table thead {
+    display: none !important;
+  }
+
+  .orders-section .table-scroll .orders-table tbody {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 11px;
+    width: 100%;
+    min-width: 0;
+    padding: 12px;
+    box-sizing: border-box;
+  }
+
+  .orders-section .table-scroll .orders-table tbody tr {
+    display: block !important;
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #e5d9ca;
+    border-radius: 12px;
+    background: #fffdf9;
+    box-sizing: border-box;
+  }
+
+  .orders-section .table-scroll .orders-table tbody td {
+    display: grid !important;
+    grid-template-columns: 88px minmax(0, 1fr);
+    align-items: start;
+    gap: 8px;
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    padding: 8px 0;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    border-top: 1px solid #f0e8de;
+    box-sizing: border-box;
+  }
+
+  .orders-section .table-scroll .orders-table tbody td:first-child {
+    padding-top: 1px;
+    border-top: 0;
+  }
+
+  .orders-section .table-scroll .orders-table tbody td::before {
+    grid-column: 1;
+    color: #82776b;
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: .06em;
+  }
+
+  .orders-section .table-scroll .orders-table tbody td:nth-child(1)::before {
+    content: "ORDER / BUYER";
+  }
+
+  .orders-section .table-scroll .orders-table tbody td:nth-child(2)::before {
+    content: "PRODUCT";
+  }
+
+  .orders-section .table-scroll .orders-table tbody td:nth-child(3)::before {
+    content: "PRODUCTION";
+  }
+
+  .orders-section .table-scroll .orders-table tbody td:nth-child(4)::before {
+    content: "STAGE";
+  }
+
+  .orders-section .table-scroll .orders-table tbody td:nth-child(5)::before {
+    content: "EX-FACTORY";
+  }
+
+  .orders-section .table-scroll .orders-table tbody td:nth-child(6)::before {
+    content: "STATUS";
+  }
+
+  .orders-section .table-scroll .orders-table tbody td > * {
+    grid-column: 2;
+    min-width: 0;
+    max-width: 100%;
+    overflow-wrap: anywhere;
+  }
+
+  .orders-section .table-scroll .orders-table tbody td:nth-child(7) {
+    display: flex !important;
+    justify-content: flex-end;
+    padding: 6px 0 0;
+  }
+
+  .orders-section .table-scroll .orders-table tbody td:nth-child(7)::before {
+    display: none;
+  }
+
+  .orders-section .table-scroll .orders-table .mini-progress {
+    width: min(100%, 120px);
+  }
+
+  .orders-section .notification-panel,
+  .orders-section .notification-panel.order-details-panel {
+    position: relative !important;
+    inset: auto !important;
+    width: auto !important;
+    min-width: 0;
+    max-width: none !important;
+    margin: 0 12px 12px;
+    box-sizing: border-box;
+  }
+
+  .orders-section .table-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    padding: 12px 14px;
+    overflow-wrap: anywhere;
+  }
+
+  /* CREATE ORDER */
+  .order-setup-workspace {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .order-setup-workspace .order-setup-card {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    padding: 17px 14px;
+    box-sizing: border-box;
+  }
+
+  .order-setup-workspace .order-setup-section-heading {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .order-setup-workspace .order-setup-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 14px;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .order-setup-workspace .order-setup-field,
+  .order-setup-workspace .order-setup-size-field {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .order-setup-workspace input,
+  .order-setup-workspace select {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+  }
+
+  .order-setup-workspace .order-setup-size-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .order-setup-workspace .order-setup-milestone {
+    display: grid;
+    grid-template-columns: 36px minmax(0, 1fr);
+    gap: 9px;
+    width: 100%;
+    min-width: 0;
+    padding: 12px;
+    box-sizing: border-box;
+  }
+
+  .order-setup-workspace .order-setup-milestone-date {
+    grid-column: 2;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .order-setup-workspace .order-setup-actions {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 9px;
+    width: 100%;
+  }
+
+  .order-setup-workspace .order-setup-actions button {
+    width: 100%;
+    min-width: 0;
+    justify-content: center;
+  }
+
+  /* SUPERVISOR */
+  .supervisor-workspace {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .supervisor-workspace .supervisor-order-card,
+  .supervisor-workspace .supervisor-form-card,
+  .supervisor-workspace .supervisor-history-card {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    padding: 16px;
+    box-sizing: border-box;
+  }
+
+  .supervisor-workspace .supervisor-order-card select,
+  .supervisor-workspace .supervisor-form-card select,
+  .supervisor-workspace .supervisor-form-card input,
+  .supervisor-workspace .supervisor-form-card textarea {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+  }
+
+  .supervisor-workspace .supervisor-order-details {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 13px;
+  }
+
+  .supervisor-workspace .supervisor-submit {
+    display: flex;
+    width: 100%;
+    min-width: 0;
+    justify-content: center;
+  }
+
+  .supervisor-workspace .supervisor-history-heading,
+  .supervisor-workspace .supervisor-history-item-top,
+  .supervisor-workspace .supervisor-history-top,
+  .supervisor-workspace .supervisor-history-title,
+  .supervisor-workspace .supervisor-history-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 8px;
+    min-width: 0;
+  }
+
+  .supervisor-workspace .production-photo-picker {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .supervisor-workspace .production-photo-preview {
+    width: 100%;
+    min-width: 0;
+  }
+
+  /* BUYER PORTAL */
+  .buyer-workspace .buyer-page-heading,
+  .buyer-workspace .buyer-section-heading {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .buyer-workspace .buyer-refresh-button {
+    display: inline-flex;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    justify-content: center;
+    white-space: normal;
+  }
+
+  .buyer-workspace .buyer-summary-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 11px;
+    width: 100%;
+    min-width: 0;
+    margin-bottom: 24px;
+  }
+
+  .buyer-workspace .buyer-summary-card,
+  .buyer-workspace .buyer-order-card {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    padding: 16px;
+    box-sizing: border-box;
+  }
+
+  .buyer-workspace .buyer-order-card-header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 9px;
+  }
+
+  .buyer-workspace .buyer-exfactory {
+    text-align: left;
+  }
+
+  .buyer-workspace .buyer-product-row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .buyer-workspace .buyer-product-row > div:first-child {
+    grid-column: 1 / -1;
+  }
+
+  .buyer-workspace .buyer-milestone-row {
+    display: grid;
+    grid-template-columns: 34px minmax(0, 1fr);
+    gap: 8px 10px;
+  }
+
+  .buyer-workspace .buyer-milestone-status {
+    grid-column: 2;
+    justify-self: start;
+    text-align: left;
+  }
+
+  .buyer-workspace .buyer-audit-panel,
+  .buyer-workspace .buyer-audit-entry {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    overflow-wrap: anywhere;
+  }
+
+  /* MERCHANDISER PRODUCTION AND TNA */
+  .merchandiser-workspace-page .merch-production-list,
+  .merchandiser-workspace-page .tna-list,
+  .merchandiser-workspace-page .tna-ship-date-list {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    gap: 12px;
+  }
+
+  .merchandiser-workspace-page .merch-production-card {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    padding: 16px;
+    box-sizing: border-box;
+  }
+
+  .merchandiser-workspace-page .tna-row {
+    display: grid;
+    grid-template-columns: 52px minmax(0, 1fr);
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    gap: 9px;
+    padding: 13px;
+    box-sizing: border-box;
+  }
+
+  .merchandiser-workspace-page .tna-main {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .merchandiser-workspace-page .tna-status {
+    grid-column: 2;
+    justify-self: start;
+  }
+
+  .merchandiser-workspace-page .tna-row-actions {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    min-width: 0;
+  }
+
+  .merchandiser-workspace-page .tna-row-actions button {
+    flex: 1 1 95px;
+    min-width: 0;
+  }
+
+  .merchandiser-workspace-page .tna-audit-panel,
+  .merchandiser-workspace-page .tna-audit-entry {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    overflow-wrap: anywhere;
+  }
+
+  /* AI REVIEW */
+  .issue-review-workspace .issue-review-heading {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .issue-review-workspace .issue-review-heading > button,
+  .issue-review-workspace .issue-review-heading > div {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .issue-review-workspace .issue-review-summary {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 10px;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .issue-review-workspace .issue-review-card {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    padding: 15px;
+    box-sizing: border-box;
+  }
+
+  .issue-review-workspace .issue-review-card-top {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 9px;
+  }
+
+  .issue-review-workspace .issue-review-note-grid,
+  .issue-review-workspace .issue-review-analysis-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    width: 100%;
+    min-width: 0;
+    gap: 10px;
+  }
+
+  .issue-review-workspace .issue-review-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .issue-review-workspace .issue-review-buttons {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr);
+    width: 100%;
+    min-width: 0;
+    gap: 9px;
+  }
+
+  .issue-review-workspace .issue-review-buttons > button,
+  .issue-review-workspace .issue-review-actions > button {
+    display: inline-flex !important;
+    width: 100% !important;
+    max-width: 100%;
+    min-width: 0 !important;
+    min-height: 44px;
+    justify-content: center;
+    white-space: normal !important;
+    box-sizing: border-box;
+  }
+
+  /* BUYER DIRECTORY */
+  .merchandiser-workspace-page .buyers-directory-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    width: 100%;
+    min-width: 0;
+    gap: 12px;
+  }
+
+  .merchandiser-workspace-page .buyer-directory-card {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    padding: 16px;
+    box-sizing: border-box;
+  }
+
+  .merchandiser-workspace-page .buyer-directory-stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 7px;
+    width: 100%;
+    min-width: 0;
+  }
+}
+
+/* SMALL PHONES */
+@media (max-width: 380px) {
+  .page-content {
+    padding-left: 13px;
+    padding-right: 13px;
+  }
+
+  .topbar {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .breadcrumb {
+    gap: 5px;
+    font-size: 9px;
+  }
+
+  .page-heading h1 {
+    font-size: 27px;
+  }
+
+  .orders-section .table-toolbar .filter-tabs {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  .orders-section .table-scroll .orders-table tbody td {
+    grid-template-columns: 76px minmax(0, 1fr);
+    gap: 7px;
+  }
+
+  .order-setup-workspace .order-setup-size-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .buyer-workspace .buyer-order-card,
+  .supervisor-workspace .supervisor-order-card,
+  .supervisor-workspace .supervisor-form-card,
+  .issue-review-workspace .issue-review-card {
+    padding: 13px;
+  }
+}
